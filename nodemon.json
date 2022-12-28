@@ -1,0 +1,4 @@
+{   
+    "watch": ["video_auto/src/obj.json"],
+    "ext": "json"
+  }
