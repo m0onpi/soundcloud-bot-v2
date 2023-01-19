@@ -1,7 +1,7 @@
 {
-  "main": "parser/getaudiocover/getstuff.js",
+  "main": "main/getstuff.js",
   "scripts": {
-    "dev": "node parser/getaudiocover/getstuff.js",
+    "dev": "node main/getstuff.js",
     "test": "echo ? Error"
   },
   "dependencies": {
