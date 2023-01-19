@@ -1,0 +1,41 @@
+{
+  "name": "video_auto",
+  "version": "1.0.0",
+  "description": "My Remotion video",
+  "scripts": {
+    "start": "remotion preview",
+    "build": "remotion render HelloWorld out/video.mp4",
+    "upgrade": "remotion upgrade",
+    "test": "eslint src --ext ts,tsx,js,jsx && tsc"
+  },
+  "repository": {},
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@remotion/eslint-config": "^3.0.0",
+    "@types/react": "^18.0.6",
+    "@types/styled-components": "^5.1.26",
+    "@types/web": "^0.0.61",
+    "eslint": "^8.14.0",
+    "prettier": "^2.2.1",
+    "typescript": "^4.6.3"
+  },
+  "dependencies": {
+    "@remotion/cli": "3.3.6",
+    "@remotion/gif": "^3.3.6",
+    "@remotion/google-fonts": "^3.3.6",
+    "@remotion/noise": "^3.3.6",
+    "@types/node": "^18.11.10",
+    "fs": "^0.0.1-security",
+    "mp3-parser": "^0.3.0",
+    "peaks.js": "^2.1.0",
+    "react": "^18.0.0",
+    "react-audio-analyser": "^1.0.0",
+    "react-dom": "^18.0.0",
+    "remotion": "^3.3.6",
+    "soundcloud": "^3.3.0",
+    "soundcloud-scraper": "^5.0.3",
+    "soundclouder": "^0.8.1",
+    "stream": "^0.0.2",
+    "styled-components": "^5.3.6"
+  }
+}
