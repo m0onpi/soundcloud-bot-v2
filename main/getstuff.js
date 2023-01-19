@@ -3,6 +3,7 @@ const execSync = require('child_process').execSync;
 var bodyParser = require('body-parser')
 const app = express();
 fs = require("fs"); 
+const path = require('path')
 
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 var obj = []   
@@ -33,13 +34,13 @@ const client = new SoundCloud.Client();
 Stream = require('stream').Transform, 
 fs = require("fs");
 var http = require('http')
-var https = require('https')
-var info = require('/projectsjs/video_auto/src/obj.json')
+var https = require('https');
+var info = require(path.resolve(__dirname,'/../soundcloud-bot/video_auto/src/obj.json'))
 
 client.getSongInfo(info[0])
 .then(async song => {
     const stream = await song.downloadProgressive();
-    const writer = stream.pipe(fs.createWriteStream(`/projectsjs/main/audio.wav`));
+    const writer = stream.pipe(fs.createWriteStream(path.resolve(__dirname,`/../soundcloud-bot/main/audio.wav`)));
 
     https.request(song.thumbnail, function(response) {                                        
       var data = new Stream();                                                      
@@ -49,10 +50,10 @@ client.getSongInfo(info[0])
       });
 
       response.on('end', function() {  
-        fs.writeFileSync('/projectsjs/video_auto/public/image.png', data.read());
-        require('child_process').fork('/projectsjs/main/blur.js')
-        require('child_process').fork('/projectsjs/main/title.js')
-        require('child_process').fork('/projectsjs/main/audioedit.js')
+        fs.writeFileSync(path.resolve(__dirname,'/../soundcloud-bot/video_auto/public/image.png'), data.read());
+        require('child_process').fork(path.resolve(__dirname,'/../soundcloud-bot/main/blur.js'))
+        require('child_process').fork(path.resolve(__dirname,'/../soundcloud-bot/main/title.js'))
+        require('child_process').fork(path.resolve(__dirname,'/../soundcloud-bot/main/audioedit.js'))
         
         
         

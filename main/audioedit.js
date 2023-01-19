@@ -1,8 +1,10 @@
 const ffmpeg = require("fluent-ffmpeg")
 const execSync = require('child_process').execSync;
-var info = require('/projectsjs/video_auto/src/obj.json')
+const path = require('path')
 
-ffmpeg({source:'/projectsjs/main/audio.wav'})
+var info = require(path.resolve(__dirname,'/../soundcloud-bot/video_auto/src/obj.json'))
+
+ffmpeg({source: path.resolve(__dirname,'/../soundcloud-bot/main/audio.wav')})
 .setStartTime(info[1])
 .duration(21)
 .on('start',function(commandLine){
@@ -18,5 +20,5 @@ ffmpeg({source:'/projectsjs/main/audio.wav'})
     
     
 })
-.saveToFile("/projectsjs/video_auto/public/editaudio.wav")
+.saveToFile(path.resolve(__dirname, "/../soundcloud-bot/video_auto/public/editaudio.wav"))
 

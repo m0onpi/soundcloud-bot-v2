@@ -1,6 +1,8 @@
 const request = require('request');
 const cheerio = require('cheerio');
-var info = require('/projectsjs/video_auto/src/obj.json');
+const path = require('path')
+
+var info = require(path.resolve(__dirname,'/../soundcloud-bot/video_auto/src/obj.json'));
 const fs  = require('fs');
 const trackUrl = info[0];
 
@@ -41,7 +43,7 @@ request(trackUrl, (error, response, html) => {
         maintitle = JSON.stringify(final).toUpperCase()
         console.log(maintitle)
 
-        fs.writeFile("/projectsjs/video_auto/src/generatedTitle.json",maintitle, err => {
+        fs.writeFile(path.resolve(__dirname,"/../soundcloud-bot//video_auto/src/generatedTitle.json"),maintitle, err => {
             if (err) {
                 console.log('Error writing file', err)
             } else {
@@ -50,7 +52,7 @@ request(trackUrl, (error, response, html) => {
             maintitle = JSON.stringify(final+' - '+author).toUpperCase()
             console.log(maintitle)
 
-            fs.writeFile("/projectsjs/video_auto/src/generatedTitle.json",maintitle, err => {
+            fs.writeFile(path.resolve(__dirname,"/../soundcloud-bot//video_auto/src/generatedTitle.json"),maintitle, err => {
                 if (err) {
                     console.log('Error writing file', err)
                 } else {

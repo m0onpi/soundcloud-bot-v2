@@ -1,4 +1,5 @@
 const sharp = require('sharp');
+const path = require('path')
 
 sharp('/projectsjs/video_auto/public/image.png')
 .blur(25)

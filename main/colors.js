@@ -1,5 +1,6 @@
 const path = require('path')
 const getColors = require('get-image-colors')
+const path = require('path')
 
 getColors(path.join(__dirname, 'output.png')).then(colors => {
   // `colors` is an array of color objects
