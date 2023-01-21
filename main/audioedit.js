@@ -2,9 +2,9 @@ const ffmpeg = require("fluent-ffmpeg")
 const execSync = require('child_process').execSync;
 const path = require('path')
 
-var info = require(path.resolve(__dirname,'/../soundcloud-bot/video_auto/src/obj.json'))
+var info = require(path.resolve(__dirname,'/soundcloud-bot/video_auto/src/obj.json'))
 
-ffmpeg({source: path.resolve(__dirname,'/../soundcloud-bot/main/audio.wav')})
+ffmpeg({source: path.resolve(__dirname,'audio.wav')})
 .setStartTime(info[1])
 .duration(21)
 .on('start',function(commandLine){
@@ -20,5 +20,5 @@ ffmpeg({source: path.resolve(__dirname,'/../soundcloud-bot/main/audio.wav')})
     
     
 })
-.saveToFile(path.resolve(__dirname, "/../soundcloud-bot/video_auto/public/editaudio.wav"))
+.saveToFile(path.resolve(__dirname, "/soundcloud-bot/video_auto/public/editaudio.wav"))
 
