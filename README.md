@@ -1,4 +1,6 @@
 # soundcloud-bot
+update: error with files getting string infomration from obj.json when cloned.
+
 clone repository 
 
 npm install in cd soundcloud-bot 
