@@ -10,6 +10,7 @@ if (error) {
 } else {
     console.log('Image blurred successfully');
     
+    
 }
 })
 

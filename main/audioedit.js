@@ -1,3 +1,4 @@
+const { exec } = require("child_process");
 const ffmpeg = require("fluent-ffmpeg")
 const execSync = require('child_process').execSync;
 const path = require('path')
@@ -9,6 +10,7 @@ ffmpeg({source: path.resolve(__dirname,'audio.wav')})
 .duration(21)
 .on('start',function(commandLine){
     console.log("Trimming")
+
 })
 .on('error', function(err){
     console.log("Song not downloadable", + err)

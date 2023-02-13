@@ -11,7 +11,7 @@ export const RemotionRoot: React.FC = () => {
 				// npx remotion render src/index.ts <id> out/video.mp4
 				id="HelloWorld"
 				component={Background}
-				durationInFrames={12 * 30}
+				durationInFrames={20 * 30}
 				fps={30}
 				width={1080}
 				height={1920}

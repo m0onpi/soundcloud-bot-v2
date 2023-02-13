@@ -30,8 +30,9 @@ request(trackUrl, (error, response, html) => {
     const remove6 =`${remove5.replace("()","")}`;
     const remove7 =`${remove6.replace("**","")}`;
     const remove8 =`${remove7.replace("[OUT NOW ON ALL PLATFORMS]","")}`;
-
-    const final = remove8
+    const remove9 =`${remove8.replace("[Free Download]","")}`;
+    
+    const final = remove9
 
     const cutfinal = (final.replace(/ /g,'')).toUpperCase()
     const cutauthor = (author.replace(/ /g,'')).toUpperCase()

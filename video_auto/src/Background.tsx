@@ -139,7 +139,7 @@ export const Background: React.FC = () =>{
             position: "relative",
             fontFamily: fontFamily,
             fontSize: 80,          
-            color: "#C0C0C0",
+            color: "white",
             bottom: "82%",
             left: "2.5%",
             width: "1000px",

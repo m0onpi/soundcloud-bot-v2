@@ -4,6 +4,8 @@ var bodyParser = require('body-parser')
 const app = express();
 fs = require("fs"); 
 const path = require('path')
+const shell = require('shelljs')
+const startValue = require('./fft')
 
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 var obj = []   
@@ -13,8 +15,7 @@ app.get('/', (req, res) => {
     
 app.post('/', urlencodedParser, (req, res) => {
     let songurl = req.body.songurl
-    let startime = req.body.starttime
-    obj.push(songurl, startime) 
+    obj.push(songurl, startValue.startValue) 
     let object = JSON.stringify(obj)
     console.log(obj)  
     fs.writeFile('./video_auto/src/obj.json', object, err => {
@@ -40,7 +41,7 @@ var info = require(path.resolve(__dirname,'/soundcloud-bot/video_auto/src/obj.js
 client.getSongInfo(info[0])
 .then(async song => {
     const stream = await song.downloadProgressive();
-    const writer = stream.pipe(fs.createWriteStream(path.resolve(__dirname,`/audio.wav`)));
+    const writer = stream.pipe(fs.createWriteStream(`./main/audio.wav`));
 
     https.request(song.thumbnail, function(response) {                                        
       var data = new Stream();                                                      
@@ -55,12 +56,10 @@ client.getSongInfo(info[0])
         require('child_process').fork(path.resolve(__dirname,'title.js'))
         require('child_process').fork(path.resolve(__dirname,'audioedit.js'))
         
-        
-        
-        
       });
     }).end()
-    
+
+
     
   });
 
