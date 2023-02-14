@@ -1,7 +1,7 @@
 {
-  "main": "main/getstuff.js",
+  "main": "main/main.js",
   "scripts": {
-    "dev": "node main/getstuff.js",
+    "dev": "node main/main.js",
     "test": "echo ? Error"
   },
   "dependencies": {
