@@ -1,5 +1,5 @@
 # soundcloud-bot
-update: error with files getting string infomration from obj.json when cloned.
+NEEDS UPDATING
 
 clone repository 
 
