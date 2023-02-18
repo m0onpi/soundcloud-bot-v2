@@ -2,39 +2,44 @@ const sharp = require('sharp');
 const path = require('path')
 const ffmpeg = require("fluent-ffmpeg")
 const execSync = require('child_process').execSync;
-const obj = require('/soundcloud-bot/video_auto/src/obj.json')
-
-let track = './main/audio.wav';//your path to source file
-var data = require('./wavaudio.json')
-const values = data.data
-time = Array.from({length: values.length}, (_, i) => i + 1)
-
+const wait  = require('wait')
 var info = require('./requests.json')
-const songurl = info[1].urlV
-console.log(songurl)
+const url = info[0].url
 const fs  = require('fs');
+const { spawn } = require('child_process');
 
-const editaudio =  () => {
-    ffmpeg('./main/audio.wav')
-    .setStartTime(24)
-    .duration(21)
-    .on('start',function(commandLine){
-    console.log("Trimming")
-
-    })
-    .on('error', function(err){
-        console.log("Song not downloadable", + err)
-    })
-    .on("end", function(err){
-        console.log("Trimmed")
-        execSync('npm start --prefix video_auto')
-
-    
-    
-    })
-    .saveToFile(path.resolve(__dirname, "/soundcloud-bot/video_auto/public/editaudio.wav"))
+const urlSplit = async => {
+    const songurl = url.split('?')[0]
+    const time = url.split('t=')[1]
+    const minute = Number(time.split('%')[0])
+    const second = Number(time.split('A')[1])
+    console.log(minute, second)
+    return (minute * 60) + second -2
 }
-
+const t = urlSplit()
+const editaudio = async (callback) => {
+    try {
+      await ffmpeg('./main/audio.wav')
+        .setStartTime(t)
+        .duration(21)
+        .on('start', function(commandLine) {
+          console.log('Trimming');
+        })
+        .on('error', function(err) {
+          console.log('Error trimming audio:', err);
+          callback(err);
+        })
+        .on('end', function() {
+          console.log('Audio trimmed successfully.');
+        })
+        .saveToFile(path.resolve(__dirname, '/soundcloud-bot/video_auto/public/editaudio.wav'));
+    } catch (err) {
+      console.log('Error during audio trimming:', err);
+      callback(err);
+    }
+    
+  }
+  
 
 const blurimage = async () => {
     sharp(path.resolve(__dirname,'/soundcloud-bot/video_auto/public/image.png'))
@@ -51,37 +56,4 @@ const blurimage = async () => {
     })
 }
 
-const wav2 = async () => {
-    ffmpeg(track)
-    .toFormat('wav')
-    .on('error', (err) => {
-        console.log('An error occurred: ' + err.message);
-    })
-    .on('progress', (progress) => {
-        // console.log(JSON.stringify(progress));
-        console.log('Processing: ' + progress.targetSize + ' KB converted');
-    })
-    .on('end', () => {
-        console.log('Processing finished !');
-    })
-    .save('./main/wavaudio.wav');//path where you want to save your file
-    }
-
-const start =  () => {
-const maxValue = Math.max(...values)
-const minValue = Math.min(...values)
-const maxPos = values.indexOf(maxValue)
-const minPos = values.indexOf(minValue)
-
-console.log(maxValue, maxPos, minValue, minPos)
-///plotly.plot(plot, layout, function (err, msg) {
-	///if (err) return console.log(err);
-	///console.log(msg);
-///});
-
-return ~~(maxPos/3) -5;
-}
-
-
-
-module.exports = {blurimage,editaudio,wav2,start}
+module.exports = {blurimage,editaudio,urlSplit}

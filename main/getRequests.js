@@ -1,5 +1,6 @@
 const {initializeApp} = require('firebase/app');
 const {
+  deleteDoc,
   getDocs,
   addDoc,
   collection,
@@ -9,6 +10,7 @@ const {
 } = require('firebase/firestore');
 const {getAuth, signInWithEmailAndPassword} = require('firebase/auth');
 const fs = require('fs');
+const {run} = require('./delete')
 
 let FIRESTORE;
 let AUTH;
@@ -71,18 +73,19 @@ const die = (msg) => {
   process.exit(1);
 };
 
+
+
 const getDocuments = async (collectionName) => {
   let retVal = [];
 
   try {
     let collectionRef = collection(FIRESTORE, collectionName);
     let querySnap = await getDocs(collectionRef);
-    for (let i = 0; i < querySnap.size; i++) {
       retVal.push({
-        _DOCUMENT_ID_: querySnap.docs[i].id,
-        ...querySnap.docs[i].data()
+        _DOCUMENT_ID_: querySnap.docs[0].id,
+        ...querySnap.docs[0].data()
       });
-    }
+    
   } catch (ex) {
     die(`ERROR getDocuments():: ${ex.message}`);
   }
@@ -108,8 +111,11 @@ const main = async () => {
 
   console.log('>>> DONE - output written to:', jsonFile);
   process.exit();
+  
 };
 
 main().catch((ex) => {
   die('main() caught an exception: ' + ex.message);
 });
+
+module.exports = {main}

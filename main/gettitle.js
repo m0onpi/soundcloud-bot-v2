@@ -1,25 +1,26 @@
 const request = require('request');
 const cheerio = require('cheerio');
-var info = require('./requests.json');
 const path = require('path')
-const  fs = require('fs');
-const songurl = info[0].urlV
 
-request(songurl, (error, response, html) => {
+var info = require('./requests.json');
+const fs  = require('fs');
+const trackUrl = info[0].url.split('?')[0]
+request(trackUrl, (error, response, html) => {
+  if (!error && response.statusCode == 200) {
     const $ = cheerio.load(html);
     const title = $('title').text();
-  
-      // Split the title into its component parts
+
+    // Split the title into its component parts
     const parts = title.split(' by ');
-  
+    console.log(parts)
     const author = (parts[1].split(' | ')[0]).replace(/"/g ,"")
-  
-  
-      // Extract the track title and artist name
+
+
+    // Extract the track title and artist name
     const trackTitle = parts[0];
-  
-  
-      // Construct the final track title string
+
+
+    // Construct the final track title string
     const remove1 = `${trackTitle.replace("Stream","")}`;
     const remove2 = `${remove1.replace("[FREE DL]","")}`;
     const remove3 = `${remove2.replace("(FREE DOWNLOAD)","")}`;
@@ -29,18 +30,34 @@ request(songurl, (error, response, html) => {
     const remove7 =`${remove6.replace("**","")}`;
     const remove8 =`${remove7.replace("[OUT NOW ON ALL PLATFORMS]","")}`;
     const remove9 =`${remove8.replace("[Free Download]","")}`;
-      
+    
     const final = remove9
-  
+
     const cutfinal = (final.replace(/ /g,'')).toUpperCase()
     const cutauthor = (author.replace(/ /g,'')).toUpperCase()
     let included = cutfinal.includes(cutauthor)  
-    const maintitle = (final+' - '+author).toUpperCase()
-    console.log('main' + maintitle)
-    fs.writeFile(path.resolve(__dirname,'/soundcloud-bot/video_auto/src/generatedTitle.json'), JSON.stringify(maintitle),(err) => err && console.error(err))
-  
-     
-      
+    console.log(cutauthor,cutfinal)
     
-  })
 
+    if (included){
+        maintitle = JSON.stringify(final).toUpperCase()
+        console.log(maintitle)
+
+        fs.writeFile(path.resolve(__dirname,"/../soundcloud-bot//video_auto/src/generatedTitle.json"),maintitle, err => {
+            if (err) {
+                console.log('Error writing file', err)
+            } else {
+            }})
+        }else{
+            maintitle = JSON.stringify(final+' - '+author).toUpperCase()
+            console.log(maintitle)
+
+            fs.writeFile(path.resolve(__dirname,"/../soundcloud-bot//video_auto/src/generatedTitle.json"),maintitle, err => {
+                if (err) {
+                    console.log('Error writing file', err)
+                } else {
+                }})
+        }
+    
+  }
+})

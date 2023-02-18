@@ -1,6 +1,7 @@
 #!/bin/bash
 
+node main/getRequests
 
-python main/wav2json.py -i main/wavaudio.wav
+node main/main 
 
-nodemon 
+npm start --prefix video_auto 

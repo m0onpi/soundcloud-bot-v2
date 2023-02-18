@@ -4,12 +4,12 @@ const app = express();
 const {exec} = require('child_process')
 fs = require("fs"); 
 const path = require('path')
-const {blurimage,editaudio, wav2,start} = require('./editdata')
+const {blurimage,editaudio, wav2,start, urlSplit} = require('./editdata')
 const {maintitle} = require('./gettitle')
 var info = require('./requests.json')
-const songurl = info[0].urlV
+const songurl = info[0].url.split('?')[0]
 obj = []
-obj.push(songurl, start()) 
+obj.push(songurl, urlSplit()) 
 let object = JSON.stringify(obj)
 fs.writeFileSync('/soundcloud-bot/video_auto/src/obj.json',object)
 console.log(obj)  
@@ -21,7 +21,7 @@ fs = require("fs");
 var http = require('http')
 var https = require('https');
 
-client.getSongInfo(obj[0])
+client.getSongInfo(songurl)
 .then(async song => {
     const stream = await song.downloadProgressive();
     const writer = stream.pipe(fs.createWriteStream(`./main/audio.wav`));
@@ -36,9 +36,9 @@ client.getSongInfo(obj[0])
       response.on('end', function() {  
         fs.writeFileSync(path.resolve(__dirname,'/soundcloud-bot/video_auto/public/image.png'), data.read());
         blurimage()
+        urlSplit()
         editaudio()
-        start()
-        wav2()
+        
         
       });
     }).end()
