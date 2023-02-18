@@ -1,5 +1,4 @@
 node_modules
-requests.json 
-getRequests.js
-delete.js
+main/getRequests.js
+main/delete.js
 video_auto/out
