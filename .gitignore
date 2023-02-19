@@ -1,4 +1,3 @@
 node_modules
-main/getRequests.js
-main/delete.js
 video_auto/out
+main/config.js
