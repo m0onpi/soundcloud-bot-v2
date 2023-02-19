@@ -11,18 +11,14 @@ const {
 const {getAuth, signInWithEmailAndPassword} = require('firebase/auth');
 const fs = require('fs');
 const {run} = require('./delete')
-const {firebaseConfig} = require('./config')
+const {firebaseConfig,USER1} = require('./config')
 
 
 let FIRESTORE;
 let AUTH;
 
 // Firebase Console >> Authentication
-const USER1 = {
-  email: 'michael.pigottbiz@gmail.com', // USER THAT EXISTS IN FIREBASE AUTH
-  password: 'thisistest',
-  uid: 'rbYnRyXnCkSlTFcda7qGyKmri2T2'
-};
+
 
 const initializeFB = async () => {
   // USE YOUR FIREBASE PROJECT SETTINGS:
