@@ -7,8 +7,11 @@
   "dependencies": {
     "@ffmpeg/core": "^0.11.0",
     "@ffmpeg/ffmpeg": "^0.11.6",
+    "arcsecond": "^5.0.0",
+    "arcsecond-binary": "^1.2.0",
     "axios": "^1.2.1",
     "cheerio": "^1.0.0-rc.12",
+    "construct-js": "^1.0.1",
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "fft": "^0.2.1",
@@ -17,8 +20,10 @@
     "fluent-ffmpeg": "^2.1.2",
     "fourier-transform": "^1.1.2",
     "get-audio-duration": "^3.1.1",
+    "gibber.audio.lib": "^2.1.4",
     "http": "^0.0.1-security",
     "https": "^1.0.0",
+    "low-pass-filter": "^1.0.0",
     "mp3-to-wav": "^0.1.11",
     "node": "^19.3.0",
     "node-audio": "^0.0.10",
@@ -34,7 +39,8 @@
     "soundcloud-scraper": "^5.0.3",
     "styled-components": "^5.3.6",
     "three": "^0.147.0",
-    "wait": "^0.4.2"
+    "wait": "^0.4.2",
+    "web-audio-api": "^0.2.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"

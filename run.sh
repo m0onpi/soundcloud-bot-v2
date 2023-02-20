@@ -4,4 +4,4 @@ node main/getRequests
 
 node main/main 
 
-npm start --prefix video_auto 
+npm run build --prefix video_auto 
