@@ -1,11 +1,7 @@
 const express = require('express');
-var bodyParser = require('body-parser')
-const app = express();
-const {exec} = require('child_process')
 fs = require("fs"); 
 const path = require('path')
-const {blurimage,editaudio, wav2,start, urlSplit} = require('./editdata')
-const {maintitle} = require('./gettitle')
+const {blurimage,editaudio, urlSplit} = require('./editdata')
 var info = require('./requests.json')
 const songurl = info[0].url.split('?')[0]
 obj = []

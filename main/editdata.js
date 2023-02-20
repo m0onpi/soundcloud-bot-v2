@@ -1,12 +1,8 @@
 const sharp = require('sharp');
 const path = require('path')
 const ffmpeg = require("fluent-ffmpeg")
-const execSync = require('child_process').execSync;
-const wait  = require('wait')
 var info = require('./requests.json')
 const url = info[0].url
-const fs  = require('fs');
-const { spawn } = require('child_process');
 
 const urlSplit = async => {
     const songurl = url.split('?')[0]
