@@ -2,6 +2,7 @@
 
 node main/getRequests
 
+node main/gettitle
+
 node main/main 
 
-npm run build --prefix video_auto 

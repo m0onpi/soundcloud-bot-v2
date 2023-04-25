@@ -1,4 +1,3 @@
-const express = require('express');
 fs = require("fs"); 
 const path = require('path')
 const {blurimage,editaudio, urlSplit} = require('./editdata')
@@ -33,6 +32,7 @@ client.getSongInfo(songurl)
         fs.writeFileSync(path.resolve(__dirname,'/soundcloud-bot/video_auto/public/image.png'), data.read());
         blurimage()
         urlSplit()
+        
         editaudio()
         
         

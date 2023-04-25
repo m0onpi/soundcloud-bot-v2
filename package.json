@@ -14,6 +14,7 @@
     "construct-js": "^1.0.1",
     "cors": "^2.8.5",
     "express": "^4.18.2",
+    "ffmpeg": "^0.0.4",
     "fft": "^0.2.1",
     "firebase": "^9.17.1",
     "firebase-admin": "^11.5.0",

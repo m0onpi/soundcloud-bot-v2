@@ -23,7 +23,6 @@ const editaudio = async (callback) => {
         })
         .on('error', function(err) {
           console.log('Error trimming audio:', err);
-          callback(err);
         })
         .on('end', function() {
           console.log('Audio trimmed successfully.');

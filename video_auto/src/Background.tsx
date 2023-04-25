@@ -2,7 +2,7 @@ import { interpolate, useCurrentFrame,spring, AbsoluteFill, Img, staticFile,Audi
 import { AudioData, useAudioData, visualizeAudio } from "@remotion/media-utils";
 import { loadFont } from "@remotion/google-fonts/Montserrat";
 const { fontFamily } = loadFont();
-var generated = require('./generatedTitle.json')
+const generated = require('./generatedTitle.json')
 import { RadialBarsVisualization } from "./RadialBarsVisualization";
 import musicSrc from "/public/editaudio.wav";
 
@@ -10,7 +10,7 @@ import musicSrc from "/public/editaudio.wav";
 const combineValues = (length: number, sources: Array<number[]>): number[] => {
     return Array.from({ length }).map((_, i) => {
       return sources.reduce((acc, source) => {
-        // pick the loudest value for each frequency bin
+        // Pick the loudest value for each frequency bin
         return Math.max(acc, source[i]);
       }, 0);
     });
@@ -64,13 +64,13 @@ export const Background: React.FC = () =>{
     numberOfSamples: nSamples
   });
 
-  // optional: use only part of the values
+  // Optional: use only part of the values
   const frequencyData = visualizationValues.slice(0, 1.2 * nSamples);
 
 
 
     return(
-        <Sequence from={0}>
+        <Sequence >
 
 
         <AbsoluteFill>   
@@ -91,7 +91,7 @@ export const Background: React.FC = () =>{
             left: "22.5%",
             padding: "10px",
             background: "black",
-            opacity: opacity,
+            opacity,
             transform: `translateY(-${up}px)`,
             borderRadius: "50%",
 
@@ -111,7 +111,7 @@ export const Background: React.FC = () =>{
             padding: "4px",
             background: "black",
             transform: `translateY(-${up}px)`,
-            opacity: opacity,
+            opacity,
             
             
                 
@@ -127,7 +127,7 @@ export const Background: React.FC = () =>{
             padding: "8px",
             background: "black",
             transform: `translateY(-${up}px)`,
-            opacity: opacity,
+            opacity,
             borderRadius: "5%"
             
             
@@ -137,7 +137,7 @@ export const Background: React.FC = () =>{
         <div  style={{ 
             display: "flex",
             position: "relative",
-            fontFamily: fontFamily,
+            fontFamily,
             fontSize: 80,          
             color: "white",
             bottom: "82%",
@@ -148,7 +148,7 @@ export const Background: React.FC = () =>{
             margin: "0px",
             textAlign: "center",
             transform: `translateY(-${up}px)`,
-            opacity: opacity,
+            opacity,
             
             
             
@@ -173,7 +173,7 @@ export const Background: React.FC = () =>{
             left: "13.25%",
             top: "32.75%",
             transform: `translateY(-${up}px)`,
-            opacity: opacity,  
+            opacity,  
             rotate: `0deg`
           }}  
         >
