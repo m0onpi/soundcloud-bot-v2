@@ -2,4 +2,4 @@
 
 go to https://dntmedia-v2.web.app/ to submit a request
 
-![Demo](demo/revanent.mp4)
+![Downloadable Demo](demo/revanent.mp4)
